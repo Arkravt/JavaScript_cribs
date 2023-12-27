@@ -58,3 +58,44 @@ document.querySelector('.test').insertAdjacentHTML('afterbegin', '<div></div>');
 // Примечание: позиции beforebegin и afterend работают только если узел имеет родительский элемент.
 
 
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+/////////////////////////////////////////////////
+
+// ПРОДВИНУТЫЙ DOM
+
+// Выбор элементов
+document.documentElement; // выбирает весь HTML документ
+document.head; // Выбирает только head
+document.body; // Выбирает только body
+
+document.querySelector('.header'); // Выбор элемента по классу
+document.querySelectorAll('.section'); // Выбор элементов по классу 
+
+document.getElementById('section--1'); // Выбор элемента по id
+document.getElementsByTagName('button'); // Выбор элемента по имени тега
+
+document.getElementsByClassName('btn'); // Выбор элемента по классу
+
+
+// Создание и вставка элементов
+// .insertAdjacentHTML()
+const message = document.createElement('div'); // Создали новый элемент div
+message.classList.add('cookie-message'); // Новому элементу присвоили класс 'cookie-message'
+message.innerHTML = 'Мы используем на этом сайте cookie для улучшения функциональности. <button class="btn btn--close-cookie">Ок!</button>'; // Новому элементу присволили новый текст и кнопку 
+
+const header = document.querySelector('.header'); // Выбрали элемент по классу 'header'
+header.prepend(message); // Поместили новый элемент в начало блока класса header
+header.append(message); // Поместили новый элемент в конец блока класса header
+
+header.append(message.cloneNode(true)); // Поместили новый копию нового элемента в начало блока класса header
+header.before(message); // Поместили новый элемент перед классом header, теперь они на одном уровне иерархии
+header.after(message); // Поместили новый элемент после класса header, теперь они на одном уровне иерархии
+
+// // Удаление элементов
+document.querySelector('.btn--close-cookie').addEventListener('click', function () {
+   message.remove(); // Удалили созданный элемент 
+   // message.parentElement.removeChild(message); // hРаньше элемент удаляли таким способом
+});
+
+
